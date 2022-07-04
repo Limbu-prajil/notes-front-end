@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/notes'
+const baseUrl = '/api/notes'
 
 const create = (newNoteObject) => {
     return axios.post(baseUrl, newNoteObject).then(res => res.data)
