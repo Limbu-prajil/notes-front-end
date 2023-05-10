@@ -27,7 +27,7 @@ class App extends React.Component {
         })
         setTimeout(() => {
           this.setState({error: null})
-        }, 9000)
+        }, 3000)
       })
   }
   addNote = (event) => {
@@ -41,7 +41,7 @@ class App extends React.Component {
     noteService
       .create(noteObject)
       .then(newNoteObj => {
-        console.log('post note');
+        console.log('Posted note.');
         this.setState({
           notes: this.state.notes.concat(newNoteObj),
           newNote: ''
