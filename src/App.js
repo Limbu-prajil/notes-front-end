@@ -13,6 +13,7 @@ class App extends React.Component {
     }
     console.log('constructor')
   }
+
   componentDidMount() {
     console.log('did mount')
     noteService
@@ -30,6 +31,7 @@ class App extends React.Component {
         }, 3000)
       })
   }
+
   addNote = (event) => {
     console.log('make note');
     event.preventDefault()
@@ -57,12 +59,15 @@ class App extends React.Component {
         }, 3000)
       })
   }
+
   handleNoteChange = (event) => {
     this.setState({ newNote: event.target.value })
   }
+
   toggleVisible = () => {
     this.setState({ showAll: !this.state.showAll })
   }
+
   toggleImportanceOf = (idd) => {
     return () => {
       const note = this.state.notes.find(n => n.id === idd)
@@ -89,6 +94,7 @@ class App extends React.Component {
         })
     }
   }
+
   render() {
     const notesToShow = this.state.showAll ? this.state.notes : this.state.notes.filter(note => note.important === true)
     const label = this.state.showAll ? 'Only important' : 'All'
@@ -113,4 +119,5 @@ class App extends React.Component {
     )
   }
 }
+
 export default App;
