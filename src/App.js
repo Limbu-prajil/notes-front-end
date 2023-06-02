@@ -35,6 +35,27 @@ class App extends React.Component {
   addNote = (event) => {
     console.log('make note');
     event.preventDefault()
+
+    if (this.state.newNote.trim() === '') {
+      setError('Note content cannot be empty.');
+      setTimeout(() => {
+        setError(null);
+      }, 2000);
+      return;
+    }
+  
+    const isDuplicateNote = this.state.notes.some(
+      (note) => note.content.toLowerCase() === this.state.newNote.toLowerCase()
+    );
+  
+    if (isDuplicateNote) {
+      setError(`Note '${this.state.newNote}' already exists.`);
+      setTimeout(() => {
+        setError(null);
+      }, 2000);
+      return;
+    }
+
     const noteObject = {
       content: this.state.newNote,
       date: new Date().toISOString(),
@@ -51,7 +72,7 @@ class App extends React.Component {
       })
       .catch(error => {
         this.setState({
-          error: `Note '${noteObject.content}' have been already unfortunately added to server.`,
+          error: `Note '${noteObject.content}' have been already added to server.`,
           notes: this.state.notes
         })
         setTimeout(() => {
