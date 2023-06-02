@@ -37,9 +37,11 @@ class App extends React.Component {
     event.preventDefault()
 
     if (this.state.newNote.trim() === '') {
-      setError('Note content cannot be empty.');
+      this.setState({
+        error: 'Note content cannot be empty.'
+      }) 
       setTimeout(() => {
-        setError(null);
+        this.setState({error: null})
       }, 2000);
       return;
     }
@@ -49,9 +51,11 @@ class App extends React.Component {
     );
   
     if (isDuplicateNote) {
-      setError(`Note '${this.state.newNote}' already exists.`);
+      this.setState({
+        error: `Note ${this.state.newNote} already exists.`
+      }) 
       setTimeout(() => {
-        setError(null);
+        this.setState({error: null})
       }, 2000);
       return;
     }
